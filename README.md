@@ -4,10 +4,10 @@
 
 ## Related Projects
 
-  - https://github.com/Quesarito/product-service
-  - https://github.com/Quesarito/reviews-service
-  - https://github.com/Quesarito/related-items-service
-  - https://github.com/Quesarito/Checkout-service
+  - https://github.com/QueryMasters/collin-reviews-service
+  - https://github.com/QueryMasters/Teddy-product-service
+  - https://github.com/QueryMasters/Vicky-vrtobar-service
+  - https://github.com/QueryMasters/Victor-related-items-service
 
 ## Table of Contents
 
@@ -17,10 +17,7 @@
 
 ## Usage
 
-1. To seed database with fake data, installation of dependencies is first required.
-   I.e. run `npm install` on the terminal from within the root directory. 
-2. Then, run `npm run-script seed` to run seeding script file. For this to work, a
-   `mongod` process must be running in the background.
+> Some usage instructions
 
 ## Requirements
 
@@ -40,4 +37,50 @@ From within the root directory:
 npm install -g webpack
 npm install
 ```
+## API METHODS
 
+CREATE: Add a new product
+  - Route: POST /products
+  - Input: Object with product information in below structure
+  - Output: none
+
+READ: Get product information
+  - Route: GET /products/:id/info
+  - Input: Path param 'id'
+  - Output: Array of objects with the following structure:
+  ```
+      { 
+       id: INTEGER,
+        name: STRING,
+        description: STRING,
+        seller: STRING,
+        prime_eligible: BOOLEAN,
+        versions: {
+          new: {
+            qty_in_stock: INTEGER,
+            price: INTEGER,
+          },
+          old: {
+            qty_in_stock: INTEGER,
+            price: INTEGER,
+          },
+        },
+        image_urls: STRING,
+        expected_date_of_arrival: INTEGER,
+        five_star_reviews: INTEGER,
+        four_star_reviews: INTEGER,
+        three_star_reviews: INTEGER,
+        two_star_reviews: INTEGER,
+        one_star_reviews: INTEGER,
+        answered_questions: INTEGER,
+      }
+ ```
+UPDATE: Update product information
+  - Route: PUT /products/:id
+  - Input: path param 'id' and updated info in object format
+  - Output: none
+
+DELETE: Delete a product
+  - Route: DELETE /products/:id 
+  - Input: path param 'id'
+  - Output: none

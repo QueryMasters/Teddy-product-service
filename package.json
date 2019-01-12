@@ -11,15 +11,18 @@
     "start": "nodemon --inspect=4002 ./server/index.js",
     "build": "webpack -d --watch",
     "seed": "node db/seedScript.js",
-    "test": "jest --config=jest.config.js --coverage"
+    "test": "jest --config=jest.config.js --coverage",
+    "create-data": "node db/newDataGeneration.js"
   },
   "dependencies": {
+    "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "faker": "^4.1.0",
     "mongoose": "^5.4.0",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.9",
+    "pg": "^7.8.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "styled-components": "^4.1.3"
