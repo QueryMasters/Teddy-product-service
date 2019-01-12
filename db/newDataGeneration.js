@@ -30,39 +30,6 @@ const getFutureDate = () => faker.date.future().toString();
   
 const writeStream = fs.createWriteStream("./mockdata.csv");
 
-let count = 0;
-
-// const populate = () => {
-//   while(count <= 10000000) {
-//     const id = count
-//     const name = faker.commerce.productName();
-//     const description = getDescription();
-//     const seller = faker.company.companyName();
-//     const prime_eligible = getRandomBoolean();
-//     const versions = {
-//       new: {
-//         qty_in_stock: getRandomQuantity(),
-//         price: getRandomPrice(),
-//       },
-//       old: {
-//         qty_in_stock: getRandomQuantity(),
-//         price: getRandomPrice(),
-//       },
-//     };
-//     const image_urls = getImgUrls();
-//     const expected_date_of_arrival = getFutureDate();
-//     const five_star_reviews = getRandomReviewQuantity(); 
-//     const four_star_reviews = getRandomReviewQuantity();
-//     const three_star_reviews = getRandomReviewQuantity(); 
-//     const two_star_reviews = getRandomReviewQuantity(); 
-//     const one_star_reviews = getRandomReviewQuantity(); 
-//     const answered_questions = getRandomAnswerQuantity();
-
-//     const info = [id, name, description, seller, prime_eligible, versions, image_urls, expected_date_of_arrival, five_star_reviews, four_star_reviews, three_star_reviews, two_star_reviews, one_star_reviews, answered_questions];
-//     const infoString = info.koin(',');
-//     infoString += '\n\r';
-// }
-
 const tracker = (i) => {
   if (i === 0) {
     return console.log('WOOOOOO!!! ALL 10,000,000 seeded!!!')
@@ -73,8 +40,6 @@ const tracker = (i) => {
     } else {
       console.log( 100 - (i/100000) + '00000 seeded!')
     }
-    
-
   }
 }
 
