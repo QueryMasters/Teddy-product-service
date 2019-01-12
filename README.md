@@ -4,10 +4,10 @@
 
 ## Related Projects
 
-  - https://github.com/QueryMasters/product-service
-  - https://github.com/QueryMasters/reviews-service
-  - https://github.com/QueryMasters/related-items-service
-  - https://github.com/QueryMasters/Checkout-service
+  - https://github.com/QueryMasters/collin-reviews-service
+  - https://github.com/QueryMasters/Teddy-product-service
+  - https://github.com/QueryMasters/Vicky-vrtobar-service
+  - https://github.com/QueryMasters/Victor-related-items-service
 
 ## Table of Contents
 
