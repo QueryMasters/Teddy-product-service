@@ -28,7 +28,7 @@ const getRandomReviewQuantity = () => Math.floor(Math.random() * Math.random() *
 const getRandomAnswerQuantity = () => Math.floor(Math.random() * 250);
 const getFutureDate = () => faker.date.future().toString();
   
-const writeStream = fs.createWriteStream("./mockdata.csv");
+const writeStream = fs.createWriteStream("./mockdata.json");
 
 const tracker = (i) => {
   if (i === 0) {

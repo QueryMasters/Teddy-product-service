@@ -11,12 +11,23 @@ db.connect((err) => {
 })
 
 // CREATE
-const addProduct
+const createProduct = (productID) => {
+  return new Promise((resolve, reject) => {
+    const queryString = `INSERT INTO products () VALUES ()`
+    db.query(queryString, (err, res) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(res);
+      }
+    });
+  });
+};
 
 // READ
-const getProduct = (productID) => {
+const readProduct = (productID) => {
   return new Promise((resolve, reject) => {
-    const queryString = `SELECT * FROM products WHERE productID = ${productID}`;
+    const queryString = `SELECT * FROM products WHERE productID=${productID}`;
     db.query(queryString, (err, res) => {
       if (err) {
         reject(err);
@@ -30,7 +41,7 @@ const getProduct = (productID) => {
 // UPDATE
 const updateProduct = (product, productID) => {
   return new Promise((resolve, reject) => {
-    const queryString = `UPDATE products SET product_title=${product.product_title}, vendor_name=${product.vendor_name}, review_average=${product.review_average}, review_count = ${product.review_count}, answered_questions = ${product.answered_questions}, list_price = ${product.list_price}, price = ${product.price}, description = ${product.description} WHERE productID=${productID}`;
+    const queryString = `UPDATE products SET `;
     db.query(queryString, (err, res) => {
       if (err) {
         reject(err);
@@ -42,9 +53,9 @@ const updateProduct = (product, productID) => {
 };
 
 // DELETE
-const deleteProducts = (productID) => {
+const deleteProduct = (productID) => {
   return new Promise((resolve, reject) => {
-    const queryString = `DELETE FROM products WHERE productID = ${productID}`;
+    const queryString = `DELETE FROM products WHERE productID=${productID}`;
     db.query(queryString, (err, res) => {
       if (err) {
         reject(err);
@@ -55,13 +66,9 @@ const deleteProducts = (productID) => {
   });
 };
 
-
-
-
 module.exports = {
-  addProduct,
-  getProduct,
-  addPhoto,
-  deleteProducts,
+  createProduct,
+  readProduct,
   updateProduct,
-}
+  deleteProduct,
+};

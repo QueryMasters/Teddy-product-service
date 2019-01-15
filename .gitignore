@@ -26,4 +26,7 @@ dist/
 public/bundle.js
 public/*.ttf
 
-mockdata.csv
+mockdata-product.csv  
+mockdata-version.csv
+mockdata-new.csv
+mockdata-old.csv

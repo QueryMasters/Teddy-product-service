@@ -1,15 +1,15 @@
-CREATE DATABASE product_service
+CREATE DATABASE product_service;
 
 
 CREATE TABLE products (
 	id INT NOT NULL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
-	description TEXT,
+	description [TEXT],
 	seller VARCHAR(100) NOT NULL, 
 	prime_eligible BOOL NOT NULL,
 	FOREIGN KEY (versions) REFERENCES versions(id), 
 	image_urls VARCHAR(500) NOT NULL,
-	expected_date_of_arrival vvarchar(255) NOT NULL,
+	expected_date_of_arrival VARCHAR(255) NOT NULL,
 	five_star_reviews INT,
   four_star_reviews INT,
   three_star_reviews INT,
