@@ -12,7 +12,10 @@
     "build": "webpack -d --watch",
     "seed": "node db/seedScript.js",
     "test": "jest --config=jest.config.js --coverage",
-    "create-data": "node db/newDataGeneration.js"
+    "create-data": "node db//PostgreSQL/generateDataPostgreSQL.js",
+    "create-postgresql-db": "createdb product_service",
+    "create-postgresql-schema": "psql -d product_service -a -f db/PostgreSQL/schema.sql",
+    "populate-postgresql": "psql -d product_service -a -f db/PostgreSQL/seedPostgreSQL.sql"
   },
   "dependencies": {
     "bluebird": "^3.5.3",

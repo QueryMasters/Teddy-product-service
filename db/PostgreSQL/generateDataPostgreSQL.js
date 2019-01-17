@@ -2,11 +2,12 @@ const faker = require('faker');
 const fs = require('fs');
 
 // Import products images urls (array of arrays with URLs)
-const { productImageURLs } = require('./productImageURLs.js', { flags: 'a' });
+const { productImageURLs } = require('../productImageURLs.js', { flags: 'a' });
 
 // Get a random number of image urls from imported image urls
 const getImgUrls = () => {
   const rand = Math.floor(Math.random() * productImageURLs.length);
+
   return productImageURLs[rand];
 };
 
@@ -69,19 +70,19 @@ const populateProduct = (writer) => {
       i--;
       tracker(i);
       const product = 
-        i + ','
-        + faker.commerce.productName() + ','
-        + getDescription() + ','
-        + faker.company.companyName() + ','
-        + getRandomBoolean() + ','
-        + i + ','
-        + getImgUrls() + ','
-        + getFutureDate() + ','
-        + getRandomReviewQuantity() + ',' 
-        + getRandomReviewQuantity() + ',' 
-        + getRandomReviewQuantity() + ',' 
-        + getRandomReviewQuantity() + ',' 
-        + getRandomReviewQuantity() + ',' 
+        i + '|'
+        + faker.commerce.productName() + '|'
+        + getDescription() + '|'
+        + faker.company.companyName() + '|'
+        + getRandomBoolean() + '|'
+        + i + '|'
+        + getImgUrls() + '|'
+        + getFutureDate() + '|'
+        + getRandomReviewQuantity() + '|' 
+        + getRandomReviewQuantity() + '|' 
+        + getRandomReviewQuantity() + '|' 
+        + getRandomReviewQuantity() + '|' 
+        + getRandomReviewQuantity() + '|' 
         + getRandomAnswerQuantity() + '\n'
       if (i === 0) {
         writer.write(product);
@@ -104,8 +105,8 @@ const populateVersions = (writer) => {
       i--;
       tracker(i);
       const product = 
-        i + ','
-        + i + ','
+        i + '|'
+        + i + '|'
         + i + '\n'
       if (i === 0) {
         writer.write(product);
@@ -128,8 +129,8 @@ const populateNewVersion = (writer) => {
       i--;
       tracker(i);
       const product = 
-        i + ','
-        + getRandomQuantity() + ',' 
+        i + '|'
+        + getRandomQuantity() + '|' 
         + getRandomPrice() +'\n'
       if (i === 0) {
         writer.write(product);
@@ -152,8 +153,8 @@ const populateOldVersion = (writer) => {
       i--;
       tracker(i);
       const product = 
-        i + ','
-        + getRandomQuantity() + ',' 
+        i + '|'
+        + getRandomQuantity() + '|' 
         + getRandomPrice() + '\n'
       if (i === 0) {
         writer.write(product);
