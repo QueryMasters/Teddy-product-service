@@ -25,7 +25,7 @@ const createProduct = (product) => {
 };
 
 // READ
-const readProduct = (productID) => {
+const readProduct = (product) => {
   return new Promise((resolve, reject) => {
     const queryString = `SELECT * FROM products WHERE id=${id}`;
     db.query(queryString, (err, res) => {
@@ -39,7 +39,7 @@ const readProduct = (productID) => {
 };
 
 // UPDATE
-const updateProduct = (product, productID) => {
+const updateProduct = (product, product) => {
   return new Promise((resolve, reject) => {
     const queryString = `UPDATE products SET id=${product.id}, name=${product.name}, description=${product.description}, seller=${product.seller}, prime_eligible=${product.prime_eligible}, versions=${product.versions}, image_urls=${product.image_urls}, expected_date_of_arrival=${product.expected_date_of_arrival}, five_star_reviews=${product.five_star_reviews}, four_star_reviews=${product.four_star_reviews}, three_star_reviews=${product.three_star_reviews}, two_star_reviews=${product.two_star_reviews}, one_star_reviews=${product.one_star_reviews}, answered_questions=${product.answered_questions} WHERE id=${id}`;
     db.query(queryString, (err, res) => {
@@ -53,7 +53,7 @@ const updateProduct = (product, productID) => {
 };
 
 // DELETE
-const deleteProduct = (productID) => {
+const deleteProduct = (product) => {
   return new Promise((resolve, reject) => {
     const queryString = `DELETE FROM products WHERE id=${id}`;
     db.query(queryString, (err, res) => {

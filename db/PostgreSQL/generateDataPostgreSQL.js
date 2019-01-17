@@ -49,26 +49,26 @@ writeStreamVersions.write(versionsColumns);
 writeStreamNewVersion.write(newVersionColumns);
 writeStreamOldVersion.write(oldVersionColumns)
 
-const tracker = (i) => {
+const tracker = (i, name) => {
   if (i === 0) {
-    return console.log('WOOOOOO!!! ALL 10,000,000 seeded!!!')
+    return console.log(`WOOOOOO!!! ALL 10,000,000 data generated for ${name}!!!`)
   }
   if (i % 100000 === 0) {
     if (i % 1000000 === 0) {
-      console.log( (10 - (i/1000000)) + ',000,000 seeded!')
+      console.log(name + ':' + (10 - (i/1000000)) + ',000,000 data generated!' )
     } else {
-      console.log( 100 - (i/100000) + '00000 seeded!')
+      console.log(name + ':' + (100 - (i/100000)) + '00000 data generated!')
     }
   }
 }
 
 const populateProduct = (writer) => {
-  let i = 1000;
+  let i = 10000000;
   const write = () => {
     let ok = true;
     do {
       i--;
-      tracker(i);
+      tracker(i, 'Product');
       const product = 
         i + '|'
         + faker.commerce.productName() + '|'
@@ -98,12 +98,12 @@ const populateProduct = (writer) => {
 };
 
 const populateVersions = (writer) => {
-  let i = 1000;
+  let i = 10000000;
   const write = () => {
     let ok = true;
     do {
       i--;
-      tracker(i);
+      tracker(i, 'Versions');
       const product = 
         i + '|'
         + i + '|'
@@ -122,12 +122,12 @@ const populateVersions = (writer) => {
 }
 
 const populateNewVersion = (writer) => {
-  let i = 1000;
+  let i = 10000000;
   const write = () => {
     let ok = true;
     do {
       i--;
-      tracker(i);
+      tracker(i, 'New Version');
       const product = 
         i + '|'
         + getRandomQuantity() + '|' 
@@ -146,12 +146,12 @@ const populateNewVersion = (writer) => {
 };
 
 const populateOldVersion = (writer) => {
-  let i = 1000;
+  let i = 10000000;
   const write = () => {
     let ok = true;
     do {
       i--;
-      tracker(i);
+      tracker(i, 'Old Version');
       const product = 
         i + '|'
         + getRandomQuantity() + '|' 

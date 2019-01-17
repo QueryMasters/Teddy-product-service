@@ -13,9 +13,11 @@
     "seed": "node db/seedScript.js",
     "test": "jest --config=jest.config.js --coverage",
     "create-data": "node db//PostgreSQL/generateDataPostgreSQL.js",
+    "delete-posgreqsql-db": "dropdb product_service",
     "create-postgresql-db": "createdb product_service",
     "create-postgresql-schema": "psql -d product_service -a -f db/PostgreSQL/schema.sql",
-    "populate-postgresql": "psql -d product_service -a -f db/PostgreSQL/seedPostgreSQL.sql"
+    "populate-postgresql": "psql -d product_service -a -f db/PostgreSQL/seedPostgreSQL.sql",
+    "seed-postgresql": "npm run delete-posgresql-db && npm run create-postgresql-db && npm run create-posgresql-schema && npm run populate-postgresql"
   },
   "dependencies": {
     "bluebird": "^3.5.3",
