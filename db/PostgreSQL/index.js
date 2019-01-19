@@ -1,6 +1,6 @@
 const { Pool, Client } = require('pg');
 const Promise = require('bluebird');
-const db = require('./dbConfig.js');
+const db = require('./config.js');
 
 db.connect((err) => {
   if (err) {

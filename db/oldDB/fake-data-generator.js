@@ -2,7 +2,7 @@
 const faker = require('faker');
 
 // Import products images urls (array of arrays with URLs)
-const { productImageURLs } = require('./productImageURLs.js');
+const { productImageURLs } = require('../productImageURLs.js');
 
 // Get a random number of image urls from imported image urls
 const getImgUrls = () => {
