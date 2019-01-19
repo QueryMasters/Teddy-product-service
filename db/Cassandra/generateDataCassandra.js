@@ -6,27 +6,11 @@ const { productImageURLs } = require('../productImageURLs.js', { flags: 'a' });
 
 // Get a random number of image urls from imported image urls
 const getImgUrls = () => {
-  // const rand = Math.floor(Math.random() * productImageURLs.length);
   const rand = faker.random.number(0, 9);
   return productImageURLs[rand];
 };
 
-// Get a random amount of description from faker
-// const getDescription = () => {
-//   const rand = Math.floor(Math.random() * 4) + 4;
-//   const paragraphs = [];
-
-//   for (let i = 0; i < rand; i += 1) {
-//     paragraphs.push(faker.lorem.paragraphs());
-//   }
-//   return JSON.stringify(paragraphs);
-// };
-
 const getRandomBoolean = () => faker.random.number(0, 9) > 4;
-const getRandomQuantity = () => Math.floor(Math.random() * 25);
-const getRandomPrice = () => faker.commerce.price();
-const getRandomReviewQuantity = () => Math.floor(Math.random() * Math.random() * 100);
-const getRandomAnswerQuantity = () => Math.floor(Math.random() * 250);
 const getFutureDate = () => faker.date.future().toString();
   
 const writeStreamProduct = fs.createWriteStream("./cassandraData-product.csv");
@@ -84,7 +68,7 @@ const populateProduct = (writer) => {
         + faker.random.number(100) + '|' 
         + faker.random.number(100) + '|' 
         + faker.random.number(100) + '|' 
-        + getRandomPrice() + '\n'
+        + faker.random.number(250) + '\n'
       if (i === 0) {
         writer.write(product);
       } else {
@@ -134,7 +118,7 @@ const populateNewVersion = (writer) => {
         '1' + '|'
         + i + '|'
         + faker.random.number(100) + '|' 
-        + getRandomPrice() +'\n'
+        + faker.commerce.price() +'\n'
       if (i === 0) {
         writer.write(product);
       } else {
@@ -159,7 +143,7 @@ const populateOldVersion = (writer) => {
         '1' + '|'
         + i + '|'
         + faker.random.number(100) + '|' 
-        + getRandomPrice() + '\n'
+        + faker.commerce.price() + '\n'
       if (i === 0) {
         writer.write(product);
       } else {
@@ -174,16 +158,17 @@ const populateOldVersion = (writer) => {
 };
 
 populateProduct(writeStreamProduct);
-populateVersions(writeStreamVersions)
-populateNewVersion(writeStreamNewVersion);
-populateOldVersion(writeStreamOldVersion);
+// populateVersions(writeStreamVersions)
+// populateNewVersion(writeStreamNewVersion);
+// populateOldVersion(writeStreamOldVersion);
+
 // versions: {
 //   new: {
 //     qty_in_stock: getRandomQuantity() 
-//     price: getRandomPrice() 
+//     price: faker.commerce.price() 
 //   } 
 //   old: {
 //     qty_in_stock: getRandomQuantity() 
-//     price: getRandomPrice() 
+//     price: faker.commerce.price() 
 //   } 
 // } 

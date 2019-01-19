@@ -26,10 +26,10 @@ dist/
 public/bundle.js
 public/*.ttf
 
-mockdata-product.csv  
-mockdata-version.csv
-mockdata-new.csv
-mockdata-old.csv
+postgresqlData-product.csv  
+postgresqlData-version.csv
+postgresqlData-new.csv
+postgresqlData-old.csv
 
 cassandraData-product.csv  
 cassandraData-version.csv

@@ -6,33 +6,17 @@ const { productImageURLs } = require('../productImageURLs.js', { flags: 'a' });
 
 // Get a random number of image urls from imported image urls
 const getImgUrls = () => {
-  const rand = Math.floor(Math.random() * productImageURLs.length);
-
+  const rand = faker.random.number(0, 9);
   return productImageURLs[rand];
 };
 
-// Get a random amount of description from faker
-const getDescription = () => {
-  const rand = Math.floor(Math.random() * 4) + 4;
-  const paragraphs = [];
-
-  for (let i = 0; i < rand; i += 1) {
-    paragraphs.push(faker.lorem.paragraphs());
-  }
-  return JSON.stringify(paragraphs);
-};
-
-const getRandomBoolean = () => Math.floor(Math.random() * 10) > 4;
-const getRandomQuantity = () => Math.floor(Math.random() * 25);
-const getRandomPrice = () => faker.commerce.price();
-const getRandomReviewQuantity = () => Math.floor(Math.random() * Math.random() * 100);
-const getRandomAnswerQuantity = () => Math.floor(Math.random() * 250);
+const getRandomBoolean = () => faker.random.number(0, 9) > 4;
 const getFutureDate = () => faker.date.future().toString();
   
-const writeStreamProduct = fs.createWriteStream("./mockdata-product.csv");
-const writeStreamVersions = fs.createWriteStream("./mockdata-version.csv");
-const writeStreamNewVersion = fs.createWriteStream("./mockdata-new.csv");
-const writeStreamOldVersion = fs.createWriteStream("./mockdata-old.csv");
+const writeStreamProduct = fs.createWriteStream("./postgresqlData-product.csv");
+const writeStreamVersions = fs.createWriteStream("./postgresqlData-version.csv");
+const writeStreamNewVersion = fs.createWriteStream("./postgresqlData-new.csv");
+const writeStreamOldVersion = fs.createWriteStream("./postgresqlData-old.csv");
 
 let productColumns = ['id', 'name', 'description', 'seller', 'prime_eligible', 'versions', 'image_urls', 'expected_date_of_arrival', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'answered+questions'];
 let versionsColumns = ['id', 'newId', 'oldId'];
@@ -72,18 +56,18 @@ const populateProduct = (writer) => {
       const product = 
         i + '|'
         + faker.commerce.productName() + '|'
-        + getDescription() + '|'
+        + faker.lorem.paragraph() + '|'
         + faker.company.companyName() + '|'
         + getRandomBoolean() + '|'
         + i + '|'
         + getImgUrls() + '|'
         + getFutureDate() + '|'
-        + getRandomReviewQuantity() + '|' 
-        + getRandomReviewQuantity() + '|' 
-        + getRandomReviewQuantity() + '|' 
-        + getRandomReviewQuantity() + '|' 
-        + getRandomReviewQuantity() + '|' 
-        + getRandomAnswerQuantity() + '\n'
+        + faker.random.number(100) + '|' 
+        + faker.random.number(100) + '|' 
+        + faker.random.number(100) + '|' 
+        + faker.random.number(100) + '|' 
+        + faker.random.number(100) + '|' 
+        + faker.random.number(250) + '\n'
       if (i === 0) {
         writer.write(product);
       } else {
@@ -130,8 +114,8 @@ const populateNewVersion = (writer) => {
       tracker(i, 'New Version');
       const product = 
         i + '|'
-        + getRandomQuantity() + '|' 
-        + getRandomPrice() +'\n'
+        + faker.random.number(100) + '|' 
+        + faker.commerce.price() +'\n'
       if (i === 0) {
         writer.write(product);
       } else {
@@ -154,8 +138,8 @@ const populateOldVersion = (writer) => {
       tracker(i, 'Old Version');
       const product = 
         i + '|'
-        + getRandomQuantity() + '|' 
-        + getRandomPrice() + '\n'
+        + faker.random.number(100) + '|' 
+        + faker.commerce.price() + '\n'
       if (i === 0) {
         writer.write(product);
       } else {
@@ -173,13 +157,14 @@ populateProduct(writeStreamProduct);
 populateVersions(writeStreamVersions)
 populateNewVersion(writeStreamNewVersion);
 populateOldVersion(writeStreamOldVersion);
+
 // versions: {
 //   new: {
 //     qty_in_stock: getRandomQuantity() 
-//     price: getRandomPrice() 
+//     price: faker.commerce.price() 
 //   } 
 //   old: {
 //     qty_in_stock: getRandomQuantity() 
-//     price: getRandomPrice() 
+//     price: faker.commerce.price() 
 //   } 
 // } 
