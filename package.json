@@ -10,18 +10,20 @@
   "scripts": {
     "start": "nodemon --inspect=4002 ./server/index.js",
     "build": "webpack -d --watch",
-    "seed": "node db/seedScript.js",
+    "seed": "node db/oldDB/seedScript.js",
     "test": "jest --config=jest.config.js --coverage",
-    "create-data": "node db//PostgreSQL/generateDataPostgreSQL.js",
-    "delete-posgreqsql-db": "dropdb product_service",
+    "create-postgresql-data": "node db/PostgreSQL/generateDataPostgreSQL.js",
+    "delete-postgresql-db": "dropdb product_service",
     "create-postgresql-db": "createdb product_service",
     "create-postgresql-schema": "psql -d product_service -a -f db/PostgreSQL/schema.sql",
     "populate-postgresql": "psql -d product_service -a -f db/PostgreSQL/seedPostgreSQL.sql",
-    "seed-postgresql": "npm run delete-posgresql-db && npm run create-postgresql-db && npm run create-posgresql-schema && npm run populate-postgresql"
+    "seed-postgresql": "npm run delete-postgresql-db && npm run create-postgresql-db && npm run create-postgresql-schema && npm run populate-postgresql"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "faker": "^4.1.0",
     "mongoose": "^5.4.0",

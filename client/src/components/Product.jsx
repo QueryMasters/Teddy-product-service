@@ -1,5 +1,6 @@
 // Importing React
 import React from 'react';
+import axios from 'axios';
 
 // Importing Styled-Components
 import { createGlobalStyle } from 'styled-components';
@@ -41,11 +42,7 @@ class Product extends React.Component {
       description: [],
       seller: '',
       prime_eligible: false,
-      versions: { 
-        new: {
-          price: 0,
-        },
-      },
+      versions: 0,
       image_urls: [],
       expected_date_of_arrival: '',
       five_star_reviews: 0,
@@ -63,29 +60,38 @@ class Product extends React.Component {
 
   componentDidMount() {
     fetch(`/api/products?id=${ Math.floor(Math.random() * 100) }`)
-      .then(response => response.json())
-      .then(([ product ]) => {
-        this.setState({
-          id: product.id,
-          name: product.name,
-          description: product.description,
-          seller: product.seller,
-          prime_eligible: product.prime_eligible,
-          versions: product.versions,
-          image_urls: product.image_urls,
-          expected_date_of_arrival: product.expected_date_of_arrival,
-          five_star_reviews: product.five_star_reviews,
-          four_star_reviews: product.four_star_reviews,
-          three_star_reviews: product.three_star_reviews,
-          two_star_reviews: product.two_star_reviews,
-          one_star_reviews: product.one_star_reviews,
-          total_reviews: product.five_star_reviews + product.four_star_reviews + 
-            product.three_star_reviews + product.two_star_reviews + product.one_star_reviews,
-          answered_questions: product.answered_questions,
-        });
-        document.title = `Amazon.com: ${product.name}`;
+      .then(response => {
+        console.log(response.clone().json())
+        console.log(response)
+        return response.clone().json()
       })
-      .catch(() => console.log('ERROR FETCHING PRODUCT'));
+      .then((product) => {
+        console.log('hello', product.rows[0])
+        this.setState({
+          id: product.rows[0].id,
+          name: product.rows[0].name,
+          description: product.rows[0].description,
+          seller: product.rows[0].seller,
+          prime_eligible: product.rows[0].prime_eligible,
+          versions: product.rows[0].versions,
+          image_urls: product.rows[0].image_urls,
+          expected_date_of_arrival: product.rows[0].expected_date_of_arrival,
+          five_star_reviews: product.rows[0].five_star_reviews,
+          four_star_reviews: product.rows[0].four_star_reviews,
+          three_star_reviews: product.rows[0].three_star_reviews,
+          two_star_reviews: product.rows[0].two_star_reviews,
+          one_star_reviews: product.rows[0].one_star_reviews,
+          total_reviews: product.rows[0].five_star_reviews + product.rows[0].four_star_reviews + 
+            product.rows[0].three_star_reviews + product.rows[0].two_star_reviews + product.rows[0].one_star_reviews,
+          answered_questions: product.rows[0].answered_questions,
+        });
+        document.title = `Amazon.com: ${product.rows[0].name}`;
+        console.log('state', this.state.id)
+      })
+      .catch((val) => {
+        console.log('ERROR FETCHING PRODUCT')
+        console.log('val', val)
+      });
   }
 
   render() {
@@ -108,7 +114,7 @@ class Product extends React.Component {
             total={this.state.total_reviews}
             answered_questions={this.state.answered_questions} />
           <DescriptionView 
-            price={this.state.versions.new.price} 
+            // price={this.state.versions.new.price} 
             prime={this.state.prime_eligible} 
             description={this.state.description} />
         </ContentSection>

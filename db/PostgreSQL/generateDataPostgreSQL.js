@@ -34,24 +34,24 @@ writeStreamNewVersion.write(newVersionColumns);
 writeStreamOldVersion.write(oldVersionColumns)
 
 const tracker = (i, name) => {
-  if (i === 0) {
+  if (i === 10000000) {
     return console.log(`WOOOOOO!!! ALL 10,000,000 data generated for ${name}!!!`)
   }
   if (i % 100000 === 0) {
     if (i % 1000000 === 0) {
-      console.log(name + ':' + (10 - (i/1000000)) + ',000,000 data generated!' )
+      console.log(name + ': ' + (i/1000000) + ',000,000 data generated!' )
     } else {
-      console.log(name + ':' + (100 - (i/100000)) + '00000 data generated!')
+      console.log(name + ': ' + (i/100000) + '00000 data generated!')
     }
   }
 }
 
 const populateProduct = (writer) => {
-  let i = 10000000;
+  let i = 0;
   const write = () => {
     let ok = true;
     do {
-      i--;
+      i++;
       tracker(i, 'Product');
       const product = 
         i + '|'
@@ -73,8 +73,8 @@ const populateProduct = (writer) => {
       } else {
         ok = writer.write(product);
       }
-    } while (i > 0 && ok);
-    if (i > 0) {
+    } while (i < 10000000 && ok);
+    if (i < 10000000) {
       writer.once("drain", write);
     }
   };
@@ -82,11 +82,11 @@ const populateProduct = (writer) => {
 };
 
 const populateVersions = (writer) => {
-  let i = 10000000;
+  let i = 0;
   const write = () => {
     let ok = true;
     do {
-      i--;
+      i++;
       tracker(i, 'Versions');
       const product = 
         i + '|'
@@ -97,8 +97,8 @@ const populateVersions = (writer) => {
       } else {
         ok = writer.write(product);
       }
-    } while (i > 0 && ok);
-    if (i > 0) {
+    } while (i < 10000000 && ok);
+    if (i < 10000000) {
       writer.once("drain", write);
     }
   };
@@ -106,11 +106,11 @@ const populateVersions = (writer) => {
 }
 
 const populateNewVersion = (writer) => {
-  let i = 10000000;
+  let i = 0;
   const write = () => {
     let ok = true;
     do {
-      i--;
+      i++;
       tracker(i, 'New Version');
       const product = 
         i + '|'
@@ -121,8 +121,8 @@ const populateNewVersion = (writer) => {
       } else {
         ok = writer.write(product);
       }
-    } while (i > 0 && ok);
-    if (i > 0) {
+    } while (i < 10000000 && ok);
+    if (i < 10000000) {
       writer.once("drain", write);
     }
   };
@@ -130,11 +130,11 @@ const populateNewVersion = (writer) => {
 };
 
 const populateOldVersion = (writer) => {
-  let i = 10000000;
+  let i = 0;
   const write = () => {
     let ok = true;
     do {
-      i--;
+      i++;
       tracker(i, 'Old Version');
       const product = 
         i + '|'
@@ -145,8 +145,8 @@ const populateOldVersion = (writer) => {
       } else {
         ok = writer.write(product);
       }
-    } while (i > 0 && ok);
-    if (i > 0) {
+    } while (i < 10000000 && ok);
+    if (i < 10000000) {
       writer.once("drain", write);
     }
   };

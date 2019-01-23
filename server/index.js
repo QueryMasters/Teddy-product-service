@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-const db = require('../db/index');
+const db = require('../db/oldDB/index.js');
 
 const app = express();
 const port = 3002;

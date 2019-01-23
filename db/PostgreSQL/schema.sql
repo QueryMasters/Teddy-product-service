@@ -17,8 +17,8 @@ CREATE TABLE old (
 CREATE TABLE versions (
   id INT NOT NULL PRIMARY KEY,
   new INT,
-  FOREIGN KEY (new) REFERENCES new(id), 
   old INT,
+  FOREIGN KEY (new) REFERENCES new(id), 
   FOREIGN KEY (old) REFERENCES old(id)
 );
 
@@ -28,8 +28,7 @@ CREATE TABLE products (
 	description TEXT,
 	seller VARCHAR(100) NOT NULL, 
 	prime_eligible BOOL NOT NULL,
-	versions INT,
-  FOREIGN KEY (versions) REFERENCES versions(id), 
+	versions INT, 
 	image_urls TEXT NOT NULL,
 	expected_date_of_arrival VARCHAR(255) NOT NULL,
 	five_star_reviews INT,
@@ -37,6 +36,7 @@ CREATE TABLE products (
   three_star_reviews INT,
   two_star_reviews INT,
   one_star_reviews INT,
-  answered_questions INT
+  answered_questions INT,
+  FOREIGN KEY (versions) REFERENCES versions(id)
 );
 
