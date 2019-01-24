@@ -6,17 +6,20 @@ const LeftAlign = styled.div`
   left: 0;
 `;
 
-const PictureList = ({ pictureURLs, onHover, idSelected }) => (
-  <LeftAlign>
-    { pictureURLs.map((pictureURL, id) => {
-      return (<PictureIcon 
-        url={ pictureURL } 
-        onHover={ onHover } 
-        id={ id } key={ id }
-        idSelected={ idSelected } />);
-      })
-    }
-  </LeftAlign>
-);
+const PictureList = ({ pictureURLs, onHover, idSelected }) => {
+  console.log('urls', pictureURLs)
+  return (
+    <LeftAlign>
+      { pictureURLs.map((pictureURL, id) => {
+        return (<PictureIcon 
+          url={ pictureURL } 
+          onHover={ onHover } 
+          id={ id } key={ id }
+          idSelected={ idSelected } />);
+        })
+      }
+    </LeftAlign>
+  )
+};
 
 export default PictureList;
