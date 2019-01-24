@@ -43,6 +43,7 @@ class Product extends React.Component {
       seller: '',
       prime_eligible: false,
       versions: 0,
+      price: 0,
       image_urls: [],
       expected_date_of_arrival: '',
       five_star_reviews: 0,
@@ -59,7 +60,7 @@ class Product extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/products?id=${ Math.floor(Math.random() * 100) }`)
+    fetch(`http://localhost:3001/api/products?id=${ Math.floor(Math.random() * 100) }`)
       .then(response => {
         console.log(response.clone().json())
         console.log(response)
@@ -70,11 +71,12 @@ class Product extends React.Component {
         this.setState({
           id: product.rows[0].id,
           name: product.rows[0].name,
-          description: product.rows[0].description,
+          description: [product.rows[0].description],
           seller: product.rows[0].seller,
           prime_eligible: product.rows[0].prime_eligible,
           versions: product.rows[0].versions,
-          image_urls: product.rows[0].image_urls,
+          price: product.rows[0].price,
+          image_urls: product.rows[0].image_urls.split(','),
           expected_date_of_arrival: product.rows[0].expected_date_of_arrival,
           five_star_reviews: product.rows[0].five_star_reviews,
           four_star_reviews: product.rows[0].four_star_reviews,
@@ -114,7 +116,7 @@ class Product extends React.Component {
             total={this.state.total_reviews}
             answered_questions={this.state.answered_questions} />
           <DescriptionView 
-            // price={this.state.versions.new.price} 
+            price={this.state.price} 
             prime={this.state.prime_eligible} 
             description={this.state.description} />
         </ContentSection>

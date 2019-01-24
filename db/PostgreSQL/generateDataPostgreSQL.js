@@ -6,32 +6,32 @@ const { productImageURLs } = require('../productImageURLs.js', { flags: 'a' });
 
 // Get a random number of image urls from imported image urls
 const getImgUrls = () => {
-  const rand = faker.random.number(0, 9);
+  const rand = faker.random.number(8);
   return productImageURLs[rand];
 };
 
-const getRandomBoolean = () => faker.random.number(0, 9) > 4;
+const getRandomBoolean = () => faker.random.number(9) > 4;
 const getFutureDate = () => faker.date.future().toString();
-  
-const writeStreamProduct = fs.createWriteStream("./postgresqlData-product.csv");
-const writeStreamVersions = fs.createWriteStream("./postgresqlData-version.csv");
-const writeStreamNewVersion = fs.createWriteStream("./postgresqlData-new.csv");
-const writeStreamOldVersion = fs.createWriteStream("./postgresqlData-old.csv");
 
-let productColumns = ['id', 'name', 'description', 'seller', 'prime_eligible', 'versions', 'image_urls', 'expected_date_of_arrival', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'answered+questions'];
-let versionsColumns = ['id', 'newId', 'oldId'];
-let oldVersionColumns = ['id', 'qty_in_stock', 'price'];
-let newVersionColumns = ['id', 'qty_in_stock', 'price'];
+const writeStreamProduct = fs.createWriteStream("./postgresqlData-product.csv");
+// const writeStreamVersions = fs.createWriteStream("./postgresqlData-version.csv");
+// const writeStreamNewVersion = fs.createWriteStream("./postgresqlData-new.csv");
+// const writeStreamOldVersion = fs.createWriteStream("./postgresqlData-old.csv");
+
+let productColumns = ['id', 'name', 'description', 'seller', 'prime_eligible', 'versions', 'price', 'image_urls', 'expected_date_of_arrival', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'answered+questions'];
+// let versionsColumns = ['id', 'newId', 'oldId'];
+// let oldVersionColumns = ['id', 'qty_in_stock', 'price'];
+// let newVersionColumns = ['id', 'qty_in_stock', 'price'];
 
 productColumns = productColumns.join() + '\n';
-versionsColumns = versionsColumns.join() + '\n';
-oldVersionColumns = oldVersionColumns.join() + '\n';
-newVersionColumns = newVersionColumns.join() + '\n';
+// versionsColumns = versionsColumns.join() + '\n';
+// oldVersionColumns = oldVersionColumns.join() + '\n';
+// newVersionColumns = newVersionColumns.join() + '\n';
 
 writeStreamProduct.write(productColumns);
-writeStreamVersions.write(versionsColumns);
-writeStreamNewVersion.write(newVersionColumns);
-writeStreamOldVersion.write(oldVersionColumns)
+// writeStreamVersions.write(versionsColumns);
+// writeStreamNewVersion.write(newVersionColumns);
+// writeStreamOldVersion.write(oldVersionColumns)
 
 const tracker = (i, name) => {
   if (i === 10000000) {
@@ -60,6 +60,7 @@ const populateProduct = (writer) => {
         + faker.company.companyName() + '|'
         + getRandomBoolean() + '|'
         + i + '|'
+        + faker.commerce.price() + '|'
         + getImgUrls() + '|'
         + getFutureDate() + '|'
         + faker.random.number(100) + '|' 
@@ -154,9 +155,9 @@ const populateOldVersion = (writer) => {
 };
 
 populateProduct(writeStreamProduct);
-populateVersions(writeStreamVersions)
-populateNewVersion(writeStreamNewVersion);
-populateOldVersion(writeStreamOldVersion);
+// populateVersions(writeStreamVersions)
+// populateNewVersion(writeStreamNewVersion);
+// populateOldVersion(writeStreamOldVersion);
 
 // versions: {
 //   new: {
