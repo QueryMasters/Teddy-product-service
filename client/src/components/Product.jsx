@@ -60,7 +60,7 @@ class Product extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3001/api/products?id=${ Math.floor(Math.random() * 100) }`)
+    fetch(`http://18.218.196.120:3001/api/products?id=${ Math.floor(Math.random() * 100) }`)
       .then(response => {
         console.log(response.clone().json())
         console.log(response)
