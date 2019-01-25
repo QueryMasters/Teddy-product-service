@@ -17,7 +17,8 @@
     "create-postgresql-db": "createdb product_service",
     "create-postgresql-schema": "psql -d product_service -a -f db/PostgreSQL/schema.sql",
     "populate-postgresql": "psql -d product_service -a -f db/PostgreSQL/seedPostgreSQL.sql",
-    "seed-postgresql": "npm run delete-postgresql-db && npm run create-postgresql-db && npm run create-postgresql-schema && npm run populate-postgresql"
+    "seed-postgresql": "npm run delete-postgresql-db && npm run create-postgresql-db && npm run create-postgresql-schema && npm run populate-postgresql",
+    "SDC-start": "nodemon server/posgresqlServer.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
