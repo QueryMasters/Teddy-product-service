@@ -12,9 +12,9 @@ const PORT = 3001;
 
 const redis = require('redis'); // redis
 const client = redis.createClient(
-  // {
-  // host: process.env.REDIS_HOST,
-  // password: process.env.REDIS_PW}
+  {
+  host: process.env.REDIS_HOST,
+  password: process.env.REDIS_PW}
 )
 
 app.use(bodyParser.json());
