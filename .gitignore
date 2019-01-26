@@ -35,3 +35,5 @@ cassandraData-product.csv
 cassandraData-version.csv
 cassandraData-new.csv
 cassandraData-old.csv
+
+.env

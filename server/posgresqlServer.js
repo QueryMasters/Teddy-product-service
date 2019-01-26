@@ -1,4 +1,5 @@
 require('newrelic');
+require('dotenv').config()
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -8,6 +9,13 @@ const db = require('../db/PostgreSQL/index.js');
 
 const app = express();
 const PORT = 3001;
+
+const redis = require('redis'); // redis
+const client = redis.createClient(
+  // {
+  // host: process.env.REDIS_HOST,
+  // password: process.env.REDIS_PW}
+)
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -44,11 +52,24 @@ app.get('/app.js', (req, res) => {
 // });
 
 app.get('/api/products', (req, res) => {
-  db.readProduct(req.query)
-    .then(products => res.status(200).send(products))
-    .catch((err) => {
-      res.sendStatus(500)
-    })
+  client.get(`products${req.query.id}` , (err, result) => {
+    if (err) {
+      console.log('ERROR: Redis is broken');
+      res.status(404).send(err);
+    }
+    if (result) {
+      res.status(200).send(result);
+    } else {
+      db.readProduct(req.query)
+      .then((products) => {
+        const redisKey = `products${req.query.id}`;
+        client.set(`${redisKey}`, `${JSON.stringify(products)}`, 'EX', 6000);
+        res.status(200).send(products)})
+      .catch((err) => {
+        res.sendStatus(500)
+      });
+    }
+  });
 });
 
 
